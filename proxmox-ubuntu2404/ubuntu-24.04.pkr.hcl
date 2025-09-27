@@ -33,11 +33,11 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
     boot_iso {
       type = "scsi"
       # (Option 1) Local ISO File
-      iso_file = "local:iso/ubuntu-24.04.2-live-server-amd64.iso"
+      iso_file = "local:iso/ubuntu-24.04.3-live-server-amd64.iso"
       # (Option 2) Download ISO
       # iso_url = "https://releases.ubuntu.com/24.04/ubuntu-24.04.2-live-server-amd64.iso"
       unmount = true
-      iso_checksum = "sha512:33c08e56c83d13007e4a5511b9bf2c4926c4aa12fd5dd56d493c0653aecbab380988c5bf1671dbaea75c582827797d98c4a611f7fb2b131fbde2c677d5258ec9"
+      iso_checksum = "sha256:c3514bf0056180d09376462a7a1b4f213c1d6e8ea67fae5c25099c6fd3d8274b"
       iso_storage_pool = "local"
     }
 
@@ -50,28 +50,28 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
     scsi_controller = "virtio-scsi-pci"
 
     disks {
-        disk_size = "20G"
+        disk_size = "30G"
         format = "raw"
-        storage_pool = "local-lvm"
+        storage_pool = "local"
         type = "virtio"
     }
 
     # VM CPU Settings
-    cores = "1"
+    cores = "4"
     
     # VM Memory Settings
-    memory = "2048" 
+    memory = "8196" 
 
     # VM Network Settings
     network_adapters {
         model = "virtio"
-        bridge = "vmbr0"
+        bridge = "vmbr1"
         firewall = "false"
     } 
 
     # VM Cloud-Init Settings
     cloud_init = true
-    cloud_init_storage_pool = "local-lvm"
+    cloud_init_storage_pool = "local"
 
     # PACKER Boot Commands
     boot_command = [

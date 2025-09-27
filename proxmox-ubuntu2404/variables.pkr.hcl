@@ -1,6 +1,6 @@
 variable "proxmox_api_url" {
   type = string
-  default = "https://10.1.149.199:8006/api2/json"
+  default = "https://10.1.2.3:8006/api2/json"
 }
 
 variable "proxmox_api_token_id" {
@@ -10,7 +10,7 @@ variable "proxmox_api_token_id" {
 
 variable "proxmox_api_token_secret" {
   type = string
-  default = "de7cd80c-cf3c-43fc-bd26-df6cf3b9c98c"
+  default = "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
   sensitive = true
 }
 
