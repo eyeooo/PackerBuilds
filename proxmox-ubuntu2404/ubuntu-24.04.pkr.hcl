@@ -51,9 +51,7 @@ source "proxmox-iso" "ubuntu-server-noble-numbat" {
 
     disks {
         disk_size = "30G"
-        format = "raw"
         storage_pool = "local"
-        type = "virtio"
     }
 
     # VM CPU Settings
