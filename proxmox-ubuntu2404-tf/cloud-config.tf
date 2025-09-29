@@ -1,7 +1,3 @@
-data "local_file" "ssh_public_key" {
-  filename = "./id_rsa.pub"
-}
-
 resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
   content_type = "snippets"
   datastore_id = "local"
@@ -11,15 +7,14 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
     data = <<-EOF
     #cloud-config
     hostname: test-ubuntu
+    ssh_pwauth: yes
     timezone: Asia/Shanghai
     users:
-      - default
-      - name: ubuntu
-        chpasswd: { expire: False }
+      - name: dev
+        passwd: "$6$rounds=4096$iFF7LuApTVkDAG1I$tuMSkmn0VjoKu7QFXE9qzo4TJIogsRgZ1fgj8cBs7kL3mWvL74LyEYUpiFrNR0HDiff6DV2kxbgwl0ap/M5Ul1"
         groups: [adm, sudo]
+        lock_passwd: false
         shell: /bin/bash
-        ssh_authorized_keys:
-          - ${trimspace(data.local_file.ssh_public_key.content)}
         sudo: ALL=(ALL) NOPASSWD:ALL
     package_update: true
     packages:
