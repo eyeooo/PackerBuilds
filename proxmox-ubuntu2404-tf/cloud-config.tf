@@ -15,8 +15,8 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
     users:
       - default
       - name: ubuntu
-        groups:
-          - sudo
+        chpasswd: { expire: False }
+        groups: [adm, sudo]
         shell: /bin/bash
         ssh_authorized_keys:
           - ${trimspace(data.local_file.ssh_public_key.content)}

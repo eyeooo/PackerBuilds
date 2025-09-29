@@ -1,6 +1,7 @@
 proxmox-ubuntu2404/variables.auto.pkrvars.hcl
 
 # Terraform generated files and directories
+.terraform.*
 .terraform/
 .terraformrc
 *.tfstate
@@ -11,3 +12,6 @@ override.tf
 override.tf.json
 plan.out
 crash.log
+
+id_rsa
+id_rsa.pub

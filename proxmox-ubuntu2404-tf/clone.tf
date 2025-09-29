@@ -20,6 +20,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_clone" {
   }
 
   initialization {
+    datastore_id = var.datastore_id
     dns {
       servers = ["8.8.8.8"]
     }
