@@ -20,3 +20,8 @@ variable "datastore_id" {
   description = "Datastore for VM disks"
   default     = "local"
 }
+
+variable "virtual_environment_ip_address" {
+  type        = string
+  description = "The IP address for the Proxmox Virtual Environment"
+}

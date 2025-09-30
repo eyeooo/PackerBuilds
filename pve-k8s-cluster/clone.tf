@@ -14,8 +14,10 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config" {
   node_name    = var.virtual_environment_node_name
 
   source_raw {
-    data = templatefile("${path.module}/cloud-config.yaml.tftpl", {
+    data = templatefile("${path.module}/clone-cloud-config.yaml.tftpl", {
       hostname = each.value
+      ssh_public_key = tls_private_key.jumpbox.public_key_openssh
+
     })
 
     file_name = "user-data-cloud-config-${each.value}.yaml"

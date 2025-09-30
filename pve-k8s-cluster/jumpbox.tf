@@ -1,18 +1,3 @@
-resource "proxmox_virtual_environment_file" "user_data_cloud_config_jumpbox" {
-
-  content_type = "snippets"
-  datastore_id = "local"
-  node_name    = var.virtual_environment_node_name
-
-  source_raw {
-    data = templatefile("${path.module}/cloud-config.yaml.tftpl", {
-      hostname = "jumpbox"
-    })
-
-    file_name = "user-data-cloud-config-jumpbox.yaml"
-  }
-}
-
 resource "proxmox_virtual_environment_vm" "jumpbox" {
   name      = "jumpbox"
   node_name = var.virtual_environment_node_name
