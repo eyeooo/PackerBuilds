@@ -21,6 +21,12 @@ resource "null_resource" "configure_hosts_file" {
   # We use a for_each to run the provisioner on every single node.
   for_each = local.all_nodes_ips
 
+  # This tells Terraform to re-run the provisioner if the content
+  # of the hosts file changes for any reason (e.g., an IP changed).
+  triggers = {
+    hosts_content = local.hosts_file_content
+  }
+
   provisioner "remote-exec" {
     inline = [
       # Ensure the hosts content is not added multiple times on re-runs

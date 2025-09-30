@@ -1,0 +1,24 @@
+[all]
+jumpbox ansible_host=${jumpbox.ipv4_addresses[1][0]}
+%{ for name, vm in k8s_nodes ~}
+${name} ansible_host=${vm.ipv4_addresses[1][0]}
+%{ endfor ~}
+
+[kube_control_plane]
+k8s-master-0
+
+[etcd]
+k8s-master-0
+
+[kube_node]
+k8s-worker-0
+k8s-worker-1
+
+[k8s_cluster:children]
+kube_control_plane
+kube_node
+
+[all:vars]
+# The user that Kubespray will use to SSH into the nodes.
+# Using 'root' as it's configured with key-based access from the jumpbox.
+ansible_user=root

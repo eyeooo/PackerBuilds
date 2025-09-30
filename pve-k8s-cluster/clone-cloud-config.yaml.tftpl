@@ -17,6 +17,9 @@ packages:
   - qemu-guest-agent
   - net-tools
   - curl
+  - git
+  - python3-pip
+  - python3-venv
 runcmd:
   - sed -i 's/^#*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
   - systemctl restart ssh

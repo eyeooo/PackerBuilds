@@ -25,6 +25,9 @@ resource "proxmox_virtual_environment_file" "user_data_cloud_config_jumpbox" {
       - qemu-guest-agent
       - net-tools
       - curl
+      - git
+      - python3-pip
+      - python3-venv
     runcmd:
       - sed -i 's/^#*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
       - systemctl restart ssh
